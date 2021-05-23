@@ -16,6 +16,9 @@ class News(models.Model):
         verbose_name = 'news'
         verbose_name_plural = 'news'
 
+    def get_absolute_url(self):
+        return f'news/{self.slug}/'
+
 
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
