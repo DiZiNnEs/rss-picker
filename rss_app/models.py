@@ -7,6 +7,7 @@ class News(models.Model):
     data_published = models.DateTimeField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
+    slug = models.SlugField()
 
     def __str__(self):
         return self.title
