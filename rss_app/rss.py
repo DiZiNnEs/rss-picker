@@ -5,9 +5,9 @@ from rss_app.models import News
 
 
 class LatestNewsFeed(Feed):
-    title = "Police beat site news"
+    title = "News"
     link = "/sitenews/"
-    description = "Updates on changes and additions to police beat central."
+    description = "Updates on changes."
 
     def items(self):
         return News.objects.order_by('-data_published')[:5]
@@ -19,4 +19,4 @@ class LatestNewsFeed(Feed):
         return item.text
 
     def item_link(self, item):
-        return reverse('news', args=[item.pk])
+        return reverse('detail-news', args=[item.pk])
