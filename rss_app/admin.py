@@ -5,7 +5,7 @@ from rss_app.models import News, Comment
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {'slug': ('title',), }
 
 
 @admin.register(Comment)
