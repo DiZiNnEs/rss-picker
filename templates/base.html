@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     {% block title %} {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-gird.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css' %}">
 </head>
 <body>
-{% block body %}{% endblock %}
-
-{% block script %}{% endblock %}
+    {% block body %}{% endblock %}
 </body>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    {% block script %}{% endblock %}
 </html>
