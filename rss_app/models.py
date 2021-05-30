@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from django.urls import reverse
+
 
 class News(models.Model):
     title = models.CharField(max_length=64)
@@ -18,7 +20,7 @@ class News(models.Model):
         verbose_name_plural = 'news'
 
     def get_absolute_url(self):
-        return f'news/{self.slug}/'
+        return reverse('detail-news', kwargs={'slug': self.slug})
 
 
 class Comment(models.Model):
