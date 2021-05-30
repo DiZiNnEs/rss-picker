@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Home page</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron mt-3">
+            {% for news in news_list %}
+                <h2>{{ news.title|title }}</h2>
+                <p class="lead">{{ news.text|capfirst|truncatechars:300 }}</p>
+                <a class="btn btn-lg btn-primary" href="{{ news.get_absolute_url }}" role="button">Read »</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
