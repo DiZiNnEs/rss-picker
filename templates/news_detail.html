@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    {{ object.title }}
-    {{ object.data_published }}
-    {{ object.author }}
-    {{ object.text }}
+    <div class="container">
+        <div class="jumbotron mt-3">
+                <h1>{{ object.title }}</h1>
+                <p class="lead">{{ object.data_published }}</p>
+                <p class="lead">{{ object.author }}</p>
+                <p class="lead">{{ object.text }}</p>
+        </div>
+    </div>
 {% endblock %}
