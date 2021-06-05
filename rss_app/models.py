@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class News(models.Model):
     title = models.CharField(max_length=64)
-    data_published = models.DateTimeField()
+    pub_date = models.DateTimeField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     slug = models.SlugField()
