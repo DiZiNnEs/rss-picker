@@ -12,11 +12,36 @@ class NewsModelTestCase(TestCase):
     def setUpTestData(cls):
         User.objects.create(username='test', password='594231057Test')
         user = User.objects.get(id=1)
-        News.objects.create(title='Python', pub_date=datetime.datetime(2018, 4, 4, 0, 0, 0, tzinfo=pytz.utc),
+        News.objects.create(title='Python', pub_date='2021-09-19 08:47:51.807533',
                             author=user,
                             text='text-text', slug='python')
 
-    def test_first_name_label(self):
+    def test_title_field(self):
         news = News.objects.first()
-        field_label = news._meta.get_field('title').verbose_name
-        self.assertEqual(field_label, 'title')
+        field = news.title
+        self.assertEqual(field, 'Python')
+
+    def test_pub_date_field(self):
+        news = News.objects.first()
+        field = str(news.pub_date)
+        self.assertEqual(field, '2021-09-19 08:47:51.807533+00:00')
+
+    def test_author_field(self):
+        news = News.objects.first()
+        field = news.author.username
+        self.assertEqual(field, 'test')
+
+    def test_test_field(self):
+        news = News.objects.first()
+        field = news.text
+        self.assertEqual(field, 'text-text')
+
+    def test_slug_field(self):
+        news = News.objects.first()
+        field = news.slug
+        self.assertEqual(field, 'python')
+
+    def test_get_absolute_url(self):
+        news = News.objects.first()
+        field = news.get_absolute_url()
+        self.assertEqual(field, '/detail/python/')
