@@ -45,3 +45,32 @@ class NewsModelTestCase(TestCase):
         news = News.objects.first()
         field = news.get_absolute_url()
         self.assertEqual(field, '/detail/python/')
+
+
+class CommentModelTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        User.objects.create(username='test', password='594231057Test')
+        user = User.objects.get(id=1)
+        News.objects.create(title='Python', pub_date='2021-09-19 08:47:51.807533',
+                            author=user,
+                            text='text-text', slug='python')
+        news = News.objects.get(id=1)
+        Comment.objects.create(author=user, text='bla-bla-bla', news=news)
+
+    def test_author_field(self):
+        comment = Comment.objects.first()
+        field = comment.author
+        user = User.objects.get(id=1)
+        self.assertEqual(field, user)
+
+    def test_text_field(self):
+        comment = Comment.objects.first()
+        field = comment.text
+        self.assertEqual(field, 'bla-bla-bla')
+
+    def test_text_news(self):
+        comment = Comment.objects.first()
+        field = comment.news
+        news = News.objects.first()
+        self.assertEqual(field, news)
